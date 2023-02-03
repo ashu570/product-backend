@@ -4,10 +4,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.niit.demobackend.model.Product;
 import lombok.AllArgsConstructor;
 import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
-import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -16,7 +16,7 @@ public class ProductServiceImpl implements  ProductService{
     public Product addProduct(Product product) throws IOException {
         JSONArray jsonArray = new JSONArray(getAllProducts().toString());
         jsonArray.put(product);
-        new ObjectMapper().writeValue(new File("data.json"),jsonArray.toList());
+        new ObjectMapper().writeValue(new File("src/main/resources/data.json"),jsonArray.toList());
         return product;
     }
 
@@ -30,14 +30,20 @@ public class ProductServiceImpl implements  ProductService{
         return null;
     }
 
-//    @Override
-//    public Product getProduct(long id) {
-//        return productRepo.findById(id).get();
-//    }
+    @Override
+    public String getProduct(long id) throws IOException {
+        JSONArray jsonArray = new JSONArray(getAllProducts().toString());
+        for (int index = 0; index < jsonArray.length(); index++) {
+            JSONObject obj =(JSONObject)jsonArray.get(index);
+            if(obj.getLong("id") == id)
+                return jsonArray.get(index).toString();
+        }
+        return null;
+    }
 
     @Override
     public StringBuilder getAllProducts() throws IOException {
-        try(InputStream stream = new FileInputStream(new File("data.json"))){
+        try(InputStream stream = new FileInputStream(new File("src/main/resources/data.json"))){
             StringBuilder data=new StringBuilder();
             while (stream.available()>0){
                 data.append((char) stream.read());

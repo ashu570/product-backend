@@ -15,18 +15,18 @@ import java.util.List;
 @AllArgsConstructor
 public class ProductController {
     ProductServiceImpl productService;
-//    @CrossOrigin
-//    @GetMapping("/product/{id}")
-//    public ResponseEntity<?> getProd(@PathVariable long id){
-//        try{
-//            Product product = productService.getProduct(id);
-//            if(product!=null)
-//                return new ResponseEntity<>(product, HttpStatus.OK);
-//        }catch (Exception exception){
-//            System.out.println(exception.getMessage());
-//        }
-//        return new ResponseEntity<>("Bad request", HttpStatus.BAD_REQUEST);
-//    }
+    @CrossOrigin
+    @GetMapping(value = "/product/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getProd(@PathVariable long id){
+        try{
+            String product = productService.getProduct(id);
+            if(product!=null)
+                return new ResponseEntity<>(product, HttpStatus.OK);
+        }catch (Exception exception){
+            System.out.println(exception.getMessage());
+        }
+        return new ResponseEntity<>("Bad request", HttpStatus.BAD_REQUEST);
+    }
     @CrossOrigin
     @GetMapping(value = "/products",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getAllProds(){
