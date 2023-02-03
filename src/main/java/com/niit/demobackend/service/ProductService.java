@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface ProductService {
     Product addProduct(Product product) throws IOException;
-    List<Product> addBulk(List<Product> products);
+//    List<Product> addBulk(List<Product> products);
     Long deleteProduct(long id);
-    Product getProduct(long id);
+//    Product getProduct(long id);
     StringBuilder getAllProducts() throws IOException;
     Product updateProduct(long id);
 }

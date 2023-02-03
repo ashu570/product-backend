@@ -2,10 +2,8 @@ package com.niit.demobackend.controller;
 
 import com.niit.demobackend.model.LoginCred;
 import com.niit.demobackend.model.User;
-import com.niit.demobackend.repository.UserRepo;
 import com.niit.demobackend.service.UserService;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
