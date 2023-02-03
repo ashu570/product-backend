@@ -3,7 +3,6 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 
-
 FROM openjdk:17-alpine
 COPY --from=build /target/*.jar /usr/src/app.jar
 COPY /src/main/resources/data.json /usr/src/data.json

@@ -16,7 +16,7 @@ public class ProductServiceImpl implements  ProductService{
     public Product addProduct(Product product) throws IOException {
         JSONArray jsonArray = new JSONArray(getAllProducts().toString());
         jsonArray.put(product);
-        new ObjectMapper().writeValue(new File("src/main/resources/data.json"),jsonArray.toList());
+        new ObjectMapper().writeValue(new File("data.json"),jsonArray.toList());
         return product;
     }
 
@@ -43,7 +43,7 @@ public class ProductServiceImpl implements  ProductService{
 
     @Override
     public StringBuilder getAllProducts() throws IOException {
-        try(InputStream stream = new FileInputStream(new File("src/main/resources/data.json"))){
+        try(InputStream stream = new FileInputStream(new File("data.json"))){
             StringBuilder data=new StringBuilder();
             while (stream.available()>0){
                 data.append((char) stream.read());
