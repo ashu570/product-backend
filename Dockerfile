@@ -8,4 +8,5 @@ COPY --from=build /target/*.jar /usr/src/app.jar
 COPY /src/main/resources/data.json /usr/src/data.json
 COPY /src/main/resources/user.json /usr/src/user.json
 WORKDIR /usr/src
+EXPOSE 8080
 CMD ["java","-jar","app.jar"]
